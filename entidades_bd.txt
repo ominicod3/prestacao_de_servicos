@@ -1,0 +1,29 @@
+usuario:
+id_usuario (PK)
+nome
+email
+senha
+numero
+tipo_usuario (CLIENTE, VENDEDOR, ADMIN)
+
+
+
+adenda:
+id_agenda (PK)
+vendedor_id (FK -> usuario)
+data
+hora
+status (LIVRE, RESERVADO, CONFIRMADO)
+
+agendamento:
+id_agendamento (PK)
+cliente_id (FK -> usuario)
+agenda_id (FK -> agenda)
+status (PENDENTE, CONFIRMADO, CANCELADO)
+
+mensagem
+id (PK)
+remetente_id (FK -> usuario)
+destinatario_id (FK -> usuario)
+texto
+data_envio
