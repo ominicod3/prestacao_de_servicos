@@ -2,7 +2,7 @@ package com.prestacao_de_servicos.prestacao.service.mensagem;
 
 
 import com.prestacao_de_servicos.prestacao.model.mensagem.Mensagem;
-import com.repository.mensagem.MensagemRepository;
+import com.prestacao_de_servicos.prestacao.repository.mensagem.MensagemRepository;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;

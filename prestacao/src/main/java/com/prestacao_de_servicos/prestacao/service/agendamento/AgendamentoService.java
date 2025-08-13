@@ -2,7 +2,7 @@ package com.prestacao_de_servicos.prestacao.service.agendamento;
 
 import com.prestacao_de_servicos.prestacao.model.agendamento.Agendamento;
 import com.prestacao_de_servicos.prestacao.model.agendamento.StatusAgendamento;
-import com.repository.agendamento.AgendamentoRepository;
+import com.prestacao_de_servicos.prestacao.repository.agendamento.AgendamentoRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

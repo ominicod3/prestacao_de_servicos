@@ -2,7 +2,7 @@ package com.prestacao_de_servicos.prestacao.service.agenda;
 
 import com.prestacao_de_servicos.prestacao.model.agenda.Agenda;
 import com.prestacao_de_servicos.prestacao.model.agenda.StatusAgenda;
-import com.repository.agenda.AgendaRepository;
+import com.prestacao_de_servicos.prestacao.repository.agenda.AgendaRepository;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;

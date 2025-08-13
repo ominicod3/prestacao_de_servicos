@@ -1,8 +1,8 @@
 package com.prestacao_de_servicos.prestacao.service.usuario;
 
-
 import com.prestacao_de_servicos.prestacao.model.usuario.Usuario;
-import com.repository.usuario.UsuarioRepository;
+import com.prestacao_de_servicos.prestacao.repository.usuario.UsuarioRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -11,11 +11,8 @@ import java.util.Optional;
 @Service
 public class UsuarioService {
 
-    private final UsuarioRepository usuarioRepository;
-
-    public UsuarioService(UsuarioRepository usuarioRepository) {
-        this.usuarioRepository = usuarioRepository;
-    }
+    @Autowired
+    private UsuarioRepository usuarioRepository;
 
     public List<Usuario> listarTodos() {
         return usuarioRepository.findAll();
@@ -25,32 +22,33 @@ public class UsuarioService {
         return usuarioRepository.findById(id);
     }
 
-    public Optional<Usuario> buscarPorEmail(String email) {
-        return usuarioRepository.findByEmail(email);
-    }
-
+   public Optional<Usuario> buscarPorEmail(String email) {
+    return usuarioRepository.findByEmail(email);
+   }
+   
     public Usuario salvar(Usuario usuario) {
         return usuarioRepository.save(usuario);
     }
 
-    public Optional<Usuario> atualizar(Long id, Usuario usuario) {
-        return usuarioRepository.findById(id)
-                .map(u -> {
-                    u.setNome(usuario.getNome());
-                    u.setEmail(usuario.getEmail());
-                    u.setSenha(usuario.getSenha());
-                    u.setNumero(usuario.getNumero());
-                    u.setTipo(usuario.getTipo());
-                    return usuarioRepository.save(u);
-                });
+    public Optional<Usuario> atualizar(Long id, Usuario usuarioAtualizado) {
+        return usuarioRepository.findById(id).map(usuario -> {
+            usuario.setNome(usuarioAtualizado.getNome());
+            usuario.setEmail(usuarioAtualizado.getEmail());
+            usuario.setSenha(usuarioAtualizado.getSenha());
+            usuario.setNumero(usuarioAtualizado.getNumero());
+            usuario.setTipo(usuarioAtualizado.getTipo());
+            return usuarioRepository.save(usuario);
+        });
     }
 
     public boolean deletar(Long id) {
-        return usuarioRepository.findById(id)
-                .map(u -> {
-                    usuarioRepository.delete(u);
-                    return true;
-                })
-                .orElse(false);
+        return usuarioRepository.findById(id).map(usuario -> {
+            usuarioRepository.delete(usuario);
+            return true;
+        }).orElse(false);
+    }
+
+    public Optional<Usuario> login(String email, String senha) {
+        return usuarioRepository.findByEmailAndSenha(email, senha);
     }
 }
